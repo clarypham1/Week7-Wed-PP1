@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import Home from "./pages/HomePage";
+import Home from "./pages/HomePage";
 import AddProductPage from "./pages/AddProductPage";
 // import Navbar from "./components/Navbar";
 // import NotFoundPage from "./pages/NotFoundPage";
@@ -12,7 +12,7 @@ const App = () => {
         {/* <Navbar /> */}
         <div className="content">
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
+            {<Route path="/" element={<Home />} />}
             <Route path="/add-product" element={<AddProductPage />} />
             {/* <Route path="*" element={<NotFoundPage />} /> */}
           </Routes>
