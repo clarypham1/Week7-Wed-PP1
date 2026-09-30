@@ -3,7 +3,12 @@ const mongoose = require("mongoose");
 
 // GET /Products
 const getAllProducts = async (req, res) => {
-  res.send("getAllProducts");
+  try {
+    const products = await Product.find({}).sort({ createdAt: -1});
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({message: "Failed", error: error.message})
+  }
 };
 
 // POST /Products

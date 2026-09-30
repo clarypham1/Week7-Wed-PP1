@@ -12,21 +12,8 @@ const ProductSchema = new mongoose.Schema(
       contactEmail: { type: String, required: true },
       contactPhone: { type: String, required: true },
       isVerified: Boolean
-    }
-
-
-
-  //   title: { type: String, required: true },
-  //   author: { type: String, required: true },
-  //   isbn: { type: String, required: true },
-  //   availability: {
-  //     isAvailable: { type: Boolean, required: true },
-  //     borrower: { type: String },
-  //   },
-  // },
-  // { timestamps: true }
-  }
-);
+    },
+ },{ timestamps: true }); 
 
 // add virtual field id
 ProductSchema.set("toJSON", {
