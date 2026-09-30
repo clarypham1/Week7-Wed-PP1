@@ -8,7 +8,13 @@ const getAllProducts = async (req, res) => {
 
 // POST /Products
 const createProduct = async (req, res) => {
-  res.send("createProduct");
+  try {
+    const newProduct = await Product.create({...req.body});
+    res.status(201).json(newProduct);
+  }
+  catch (error) {
+    res.status(400).json({error: error.message})
+  }
 };
 
 // GET /Products/:ProductId
