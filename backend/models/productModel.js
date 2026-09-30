@@ -13,6 +13,11 @@ const ProductSchema = new mongoose.Schema(
       contactPhone: { type: String, required: true },
       isVerified: Boolean
     },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    }
  },{ timestamps: true }); 
 
 // add virtual field id

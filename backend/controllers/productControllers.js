@@ -14,11 +14,16 @@ const getAllProducts = async (req, res) => {
 // POST /Products
 const createProduct = async (req, res) => {
   try {
-    const newProduct = await Product.create({ ...req.body });
+    const user_id = req.user._id;
+    const newProduct = new Product({
+      ...req.body,
+      user_id,
+    });
+    await newProduct.save();
     res.status(201).json(newProduct);
-  }
-  catch (error) {
-    res.status(400).json({ error: error.message })
+  } catch (error) {
+    console.error("Error creating Product:", error);
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
