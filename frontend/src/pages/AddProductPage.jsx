@@ -17,11 +17,14 @@ const AddProductPage = () => {
     const navigate = useNavigate();
 
     const AddProduct = async (newProduct) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user ? user.token : null;
         try {
             const res = await fetch("/api/product", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(newProduct),
             });
@@ -35,7 +38,7 @@ const AddProductPage = () => {
         return true;
     };
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
 
         const newProduct = {
@@ -52,10 +55,12 @@ const AddProductPage = () => {
         }
 
 
-        AddProduct(newProduct);
+        const success = await AddProduct(newProduct);
         // console.log("adds ", newProduct)
 
-        return navigate("/add-product");
+        if (success) {
+            return navigate("/");
+        }
             }
 
     return(
